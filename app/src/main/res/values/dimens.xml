@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bwidth">40pt</dimen>
+    <dimen name="bhight">40pt</dimen>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tic Tac</string>
+    <string name="player_1">انت</string>
+    <string name="player_2">الخصم</string>
+    <string name="autoplay">لعب تلقائي</string>
+    <string name="reset">اعادة</string>
+    <string name="cong">احسنت</string>
+    <string name="cong1">لقد ربحت هذه الجولة ,تهانينــا</string>
+    <string name="sorry">ماذا خسرنا!</string>
+    <string name="sorry1">هيا لنحاول من جديد </string>
+</resources>

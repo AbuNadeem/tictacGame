@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tic Tac</string>
+    <string name="player_1">Player 1</string>
+    <string name="player_2">Player 2</string>
+    <string name="autoplay">Autoplay</string>
+    <string name="reset">reset</string>
+    <string name="cong">congrats</string>
+    <string name="cong1">you are the winner</string>
+    <string name="sorry">oh NO!!!</string>
+    <string name="sorry1">Sorry ,you lost.Lets try again </string>
+</resources>
