@@ -110,7 +110,7 @@
                 android:layout_width="45pt"
                 android:layout_height="45pt"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
 
             <Button
                 android:id="@+id/b2"
@@ -119,7 +119,7 @@
                 android:layout_width="45pt"
                 android:layout_height="45pt"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
 
             <Button
                 android:id="@+id/b3"
@@ -128,7 +128,7 @@
 
                 android:layout_height="45pt"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
         </TableRow>
 
         <TableRow
@@ -143,7 +143,7 @@
                 android:layout_width="45pt"
                 android:layout_height="45pt"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
 
             <Button
                 android:id="@+id/b5"
@@ -151,7 +151,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45pt"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
 
             <Button
                 android:id="@+id/b6"
@@ -159,7 +159,7 @@
                 android:layout_height="45pt"
                 android:background="@color/bg"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
         </TableRow>
 
         <TableRow
@@ -174,7 +174,7 @@
                 android:background="@color/bg"
                 android:layout_height="45pt"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
 
             <Button
                 android:id="@+id/b8"
@@ -182,7 +182,7 @@
                 android:background="@color/bg"
                 android:layout_height="45pt"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
 
             <Button
                 android:id="@+id/b9"
@@ -190,7 +190,7 @@
                 android:layout_width="45pt"
                 android:layout_height="45pt"
                 android:layout_margin="4dp"
-                android:onClick="bgo"/>
+                android:onClick="start"/>
 
         </TableRow>
     </TableLayout>
