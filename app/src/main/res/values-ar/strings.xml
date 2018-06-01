@@ -9,4 +9,10 @@
     <string name="cong1">لقد ربحت هذه الجولة ,تهانينــا</string>
     <string name="sorry">ماذا خسرنا!</string>
     <string name="sorry1">هيا لنحاول من جديد </string>
+    <string name="challeng_your_friend">تحدى صديق</string>
+    <string name="challeng_online">تحدي اونلاين</string>
+    <string name="easy">مستوى سهل</string>
+    <string name="medium">متوسط</string>
+    <string name="hard">صعب للغاية</string>
+    <string name="impossible">مستحيل!</string>
 </resources>

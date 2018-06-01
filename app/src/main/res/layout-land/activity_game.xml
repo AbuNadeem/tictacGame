@@ -13,9 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignEnd="@+id/switch1"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="45dp"
         android:text="@string/player_1"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
@@ -24,10 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="55dp"
-        android:layout_marginTop="80dp"
+        android:layout_alignStart="@+id/b10"
+        android:layout_marginTop="45dp"
         android:text="@string/player_2"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
@@ -38,10 +38,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="78dp"
-        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/score2"
+        android:layout_marginStart="64dp"
 
+        android:gravity="center_horizontal"
         android:text="0"
         android:textColor="#ffffff"
         android:textSize="50sp" />
@@ -55,21 +55,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:layout_marginEnd="78dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="95dp"
         android:gravity="center_horizontal"
         android:text="0"
         android:textColor="#ffffff"
         android:textSize="50sp" />
 
 
-
-
     <Button
         android:id="@+id/b10"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="50pt"
+        android:layout_width="45pt"
         android:layout_height="38dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
@@ -77,12 +76,13 @@
         android:layout_marginEnd="15dp"
         android:background="@color/colorPrimaryDark"
         android:onClick="reset"
-        android:text="@string/reset"/>
+        android:text="@string/reset" />
 
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:gravity="center_horizontal|center_vertical">
 
 
@@ -94,6 +94,7 @@
 
             <Button
                 android:id="@+id/b1"
+                android:background="@color/bg"
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
                 android:layout_margin="4dp"
@@ -101,6 +102,7 @@
 
             <Button
                 android:id="@+id/b2"
+                android:background="@color/bg"
 
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
@@ -112,6 +114,7 @@
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
                 android:layout_margin="4dp"
+                android:background="@color/bg"
                 android:onClick="start" />
         </TableRow>
 
@@ -126,19 +129,24 @@
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
                 android:layout_margin="4dp"
-                android:onClick="start" />
+                android:onClick="start"
+                android:background="@color/bg"
+                />
 
             <Button
                 android:id="@+id/b5"
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
                 android:layout_margin="4dp"
-                android:onClick="start" />
+                android:onClick="start"
+                android:background="@color/bg"
+                />
 
             <Button
                 android:id="@+id/b6"
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
+                android:background="@color/bg"
 
                 android:layout_margin="4dp"
                 android:onClick="start" />
@@ -155,17 +163,22 @@
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
                 android:layout_margin="4dp"
-                android:onClick="start" />
+                android:onClick="start"
+                android:background="@color/bg"
+                />
 
             <Button
                 android:id="@+id/b8"
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
                 android:layout_margin="4dp"
-                android:onClick="start" />
+                android:onClick="start"
+                android:background="@color/bg"
+                />
 
             <Button
                 android:id="@+id/b9"
+                android:background="@color/bg"
 
                 android:layout_width="@dimen/bwidth"
                 android:layout_height="@dimen/bhight"
@@ -175,32 +188,14 @@
         </TableRow>
     </TableLayout>
 
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/b10"
-        android:layout_alignEnd="@+id/switch1"
-        android:text="hard"
-        android:textColor="@color/gold" />    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/b10"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="24dp"
-        android:text="easy"
-        android:textColor="@color/gold"/>
-
     <Button
         android:id="@+id/clr"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:onClick="clear"
-        android:layout_alignBottom="@+id/b10"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="138dp"
+        android:layout_alignTop="@+id/b10"
+        android:layout_marginEnd="-57dp"
+        android:layout_toStartOf="@+id/score1"
         android:background="@android:drawable/ic_menu_delete"
-        />
+        android:onClick="clear" />
 
 </RelativeLayout>

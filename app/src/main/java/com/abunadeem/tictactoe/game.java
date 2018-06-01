@@ -2,20 +2,22 @@ package com.abunadeem.tictactoe;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.util.ArrayList;
 public class game extends AppCompatActivity {
     public int winner = -1;
     TextView scoresP2, scoresP1;
-    boolean autoplay;
-    boolean hardmode;
+    boolean easyMode,mediumMode,hardmode,imposMode;
     int scorep1 = 0;
     int scorep2 = 0;
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9;
@@ -27,8 +29,8 @@ public class game extends AppCompatActivity {
     ArrayList<Integer> player2 = new ArrayList<>();
     //list of all selected buttons
     ArrayList<Integer> played = new ArrayList<>();
-    private Switch easyModeSwitcher, hardModeSwitcher;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +46,49 @@ public class game extends AppCompatActivity {
         b7 = findViewById(R.id.b7);
         b8 = findViewById(R.id.b8);
         b9 = findViewById(R.id.b9);
-        easyModeSwitcher = findViewById(R.id.switch1);
-        hardModeSwitcher = findViewById(R.id.switch2);
+
+
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.levels, menu);
+        return true;
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.offlinepvp:
+                {easyMode=false;mediumMode=false;
+                hardmode=false;imposMode=false;}
+                return true;
+            case R.id.Easy:
+                {easyMode=true;mediumMode=false;
+                hardmode=false;imposMode=false;}
+                return true;
+            case R.id.med:
+                {easyMode=false;mediumMode=true;
+                hardmode=false;imposMode=false;}
+                return true;
+            case R.id.hard:
+                {easyMode=false;mediumMode=false;
+                hardmode=true;imposMode=false;}
+                return true;
+            case R.id.impo:
+                {easyMode=false;mediumMode=false;
+                hardmode=true;imposMode=true;}
+                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     public void start(View view) {
 
@@ -69,9 +111,7 @@ public class game extends AppCompatActivity {
     }
 
     private void playgame(int number, Button selectedButton) {
-       //make sure if we have any autoplay
-        autoplay = easyModeSwitcher.isChecked();
-        hardmode = hardModeSwitcher.isChecked();
+
         if (currentPlayer == 1) {
             //change the properties for the selected button
             selectedButton.setText("X");
@@ -86,10 +126,9 @@ public class game extends AppCompatActivity {
             checkwinner();
            //now player 2 return
             currentPlayer = 2;
-            //
+            if (easyMode && played.size() < 8 && winner == -1) AutoPlay();
+            if (mediumMode && played.size() < 8 && winner == -1) mediumMode();
             if (hardmode && played.size() < 8 && winner == -1) HardMode();
-
-            if (autoplay && played.size() < 8 && winner == -1) AutoPlay();
 
 
         } else {
@@ -107,44 +146,16 @@ public class game extends AppCompatActivity {
     }
 
     private void checkwinner() {
+        int[][] win= {{1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7}};
+        for (int[] aWin : win) {
+            if (player1.contains(aWin[0]) && player1.contains(aWin[1]) && player1.contains(aWin[2]))
+                winner = 1;
+            if (player2.contains(aWin[0]) && player2.contains(aWin[1]) && player2.contains(aWin[2]))
+                winner = 2;
 
-        if (player1.contains(1) && player1.contains(2) && player1.contains(3))
-            winner = 1;
-        if (player1.contains(4) && player1.contains(5) && player1.contains(6))
-            winner = 1;
-        if (player1.contains(7) && player1.contains(8) && player1.contains(9))
-            winner = 1;
-        if (player1.contains(1) && player1.contains(4) && player1.contains(7))
-            winner = 1;
-        if (player1.contains(2) && player1.contains(5) && player1.contains(8))
-            winner = 1;
-        if (player1.contains(3) && player1.contains(6) && player1.contains(9))
-            winner = 1;
-        if (player1.contains(1) && player1.contains(5) && player1.contains(9))
-            winner = 1;
-        if (player1.contains(3) && player1.contains(5) && player1.contains(7))
-            winner = 1;
+        }
 
-
-        if (player2.contains(1) && player2.contains(2) && player2.contains(3))
-            winner = 2;
-        if (player2.contains(4) && player2.contains(5) && player2.contains(6))
-            winner = 2;
-        if (player2.contains(7) && player2.contains(8) && player2.contains(9))
-            winner = 2;
-        if (player2.contains(1) && player2.contains(4) && player2.contains(7))
-            winner = 2;
-        if (player2.contains(2) && player2.contains(5) && player2.contains(8))
-            winner = 2;
-        if (player2.contains(9) && player2.contains(6) && player2.contains(3))
-            winner = 2;
-        if (player2.contains(1) && player2.contains(5) && player2.contains(9))
-            winner = 2;
-        if (player2.contains(7) && player2.contains(5) && player2.contains(3))
-            winner = 2;
-
-
-        if (winner != -1)
+            if (winner != -1)
             if (winner == 1) {
 
                 scorep1++;
@@ -177,23 +188,6 @@ public class game extends AppCompatActivity {
     }
 
 
-   /*     int[][] win= {{1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7}};
-
-
-        for (int[] aWin : win) {
-
-            for (int j : aWin) {
-                if (player1.contains(aWin[j])) {
-                        Toast.makeText(this, "p1", Toast.LENGTH_SHORT).show();
-                }
-                if (player2.contains(aWin[j])) {
-                    if (player2.contains(aWin[1]) && player2.contains(aWin[2]) && player2.contains(aWin[0]))
-                        Toast.makeText(this, "p2", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        }
-*/
 
     public void AutoPlay() {
         Button[] btn = {b1, b2, b3, b4, b5, b6, b7, b8, b9};
@@ -237,6 +231,7 @@ public class game extends AppCompatActivity {
             c.setText("");
             c.setBackgroundResource(R.color.bg);
         }
+
         player1.clear();
         player2.clear();
         played.clear();
@@ -258,54 +253,100 @@ public class game extends AppCompatActivity {
         scorep2 = 0;
         scoresP1.setText(String.valueOf(scorep1));
         scoresP2.setText(String.valueOf(scorep2));
+        reset(view);
 
     }
 
 
     public void HardMode() {
+
         int[][] choises = {{1, 2}, {2, 3}, {3, 1}, {4, 5}, {5, 6}, {6, 4}, {7, 8}, {8, 9}, {9, 7},
                 {1, 4}, {1, 7}, {4, 7}, {2, 5}, {2, 8}, {5, 8}, {3, 6}, {3, 9}, {6, 9},
                 {1, 5}, {1, 9}, {5, 9}, {7, 5}, {7, 3}, {5, 3}};
         int[] solveId = {3, 1, 2, 6, 4, 5, 9, 7, 8, 7, 4, 1, 8, 5, 2, 9, 6, 3, 9, 5, 1, 3, 5, 7};
         Button[] solveButton = {b3, b1, b2, b6, b4, b5, b9, b7, b8, b7, b4, b1, b8, b5
-                , b2, b9, b6, b3, b9, b5, b1, b3, b5, b7};
-        easyModeSwitcher.setChecked(false);
-        int i;
+                , b2, b9, b6, b3, b9, b5, b1, b3, b5, b7}; int i;
 
-        if (player1.contains(5)) {
+// FIRST STEP : select first button
             Button button = b3;
             int number = 3;
+            if(!player1.contains(5)){
+                button=b5;
+                number=5;
+                 }
+
+//////// IMPOSSIPLE LEVEL PART /////////////////////////
+        int[][] choises1 = {{2, 6}, {6, 8}, {8, 4}, {4, 2},{5,7}};
+        int[] solveit = {3, 9, 7, 1,9};
+        Button[] solve2button = {b3, b9, b7, b1,b9};
+
+        if(imposMode) {
+
+            for (i = 0; i < choises1.length; i++) {
+
+                if (player1.contains(choises1[i][0]) && player1.contains(choises1[i][1])
+                        && !played.contains(solveit[i])) {
+                    number = solveit[i];
+                    button = solve2button[i];
+                }
+            }
+        }
+   //////////////THE END OF IMPOSSIBLE PART   /////////////////
+
             for (i = 0; i < choises.length; i++) {
 
-                if (player2.contains(choises[i][0]) && player2.contains(choises[i][1]) ||
-                        player1.contains(choises[i][0]) && player1.contains(choises[i][1])) {
+                if (player1.contains(choises[i][0]) && player1.contains(choises[i][1])
+                        && !played.contains(solveId[i])) {
+                    number = solveId[i];
+                    button = solveButton[i];
+                }
+
+            }
+            for (i = 0; i < choises.length; i++) {
+
+                if (player2.contains(choises[i][0]) && player2.contains(choises[i][1])
+                        && !played.contains(solveId[i])) {
                     number = solveId[i];
                     button = solveButton[i];
                 }
 
             }
 
-            if (!played.contains(number)) playgame(number, button);
-            else AutoPlay();
-
-
-        } else {
-            Button button = b5;
-            int number = 5;
-            for (i = 0; i < choises.length; i++) {
-
-                if (player2.contains(choises[i][0]) && player2.contains(choises[i][1]) ||
-                        player1.contains(choises[i][0]) && player1.contains(choises[i][1])) {
-                    number = solveId[i];
-                    button = solveButton[i];
-                }
-
-            }
 
             if (!played.contains(number)) playgame(number, button);
             else AutoPlay();
         }
 
+////
+public void mediumMode(){
+    int[][] choises = {{1, 2}, {2, 3}, {3, 1}, {4, 5}, {5, 6}, {6, 4}, {7, 8}, {8, 9}, {9, 7},
+            {1, 4}, {1, 7}, {4, 7}, {2, 5}, {2, 8}, {5, 8}, {3, 6}, {3, 9}, {6, 9},
+            {1, 5}, {1, 9}, {5, 9}, {7, 5}, {7, 3}, {5, 3}};
+    int[] solveId = {3, 1, 2, 6, 4, 5, 9, 7, 8, 7, 4, 1, 8, 5, 2, 9, 6, 3, 9, 5, 1, 3, 5, 7};
+    Button[] solveButton = {b3, b1, b2, b6, b4, b5, b9, b7, b8, b7, b4, b1, b8, b5
+            , b2, b9, b6, b3, b9, b5, b1, b3, b5, b7}; int i;
+    Button button = b3;
+    int number = 3;
+    if(!player1.contains(5)){
+        button=b5;
+        number=5;
     }
+
+    for (i = 0; i < choises.length; i++) {
+
+        if (player1.contains(choises[i][0]) && player1.contains(choises[i][1])
+                || player2.contains(choises[i][0]) && player2.contains(choises[i][1]))
+        {
+            number = solveId[i];
+            button = solveButton[i];
+        }
+
+
+    }  if (!played.contains(number)) playgame(number, button);
+    else AutoPlay();
 }
+
+
+    }
+
 

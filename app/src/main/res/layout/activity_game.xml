@@ -11,15 +11,15 @@
     <Button
         android:id="@+id/b10"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="50pt"
+        android:layout_width="44pt"
         android:layout_height="38dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="25dp"
         android:background="@color/colorPrimaryDark"
         android:onClick="reset"
-        android:text="@string/reset"/>
+        android:text="@string/reset" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -195,33 +195,14 @@
         </TableRow>
     </TableLayout>
 
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/b10"
-        android:layout_alignEnd="@+id/switch1"
-        android:text="hard"
-        android:textColor="@color/gold" />
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/b10"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="24dp"
-        android:text="easy"
-        android:textColor="@color/gold"/>
-
     <Button
         android:id="@+id/clr"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:onClick="clear"
-        android:layout_alignBottom="@+id/b10"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="138dp"
+        android:layout_alignTop="@+id/b10"
+        android:layout_marginEnd="158dp"
         android:background="@android:drawable/ic_menu_delete"
-        />
+        android:onClick="clear" />
 
 </RelativeLayout>
